@@ -20,6 +20,12 @@ jobs:
 
       - name: Auth Test
         run: go test -cover ./...
+
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+      
+      - name: Go Security Check with gosec
+        run: gosec ./...
   styles:
     name: Style
     runs-on: ubuntu-latest
@@ -41,10 +47,5 @@ jobs:
       
       - name: Go Linting with staticcheck
         run: staticcheck ./...
-
-      - name: Install gosec
-        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
-      
-      - name: Go Security Check with gosec
-        run: gosec ./...
+  
 
